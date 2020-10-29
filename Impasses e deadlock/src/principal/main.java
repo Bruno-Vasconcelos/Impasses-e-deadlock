@@ -29,7 +29,7 @@ public class main {
 				processoR.add(processos[1]); // requisitado
 			}
 			
-			int a = 0;
+			//int a = 0;
 			for (int i = 0; i < nLinhas; i++) {
 				System.out.println((i + 1) + " quer: " + processoR.get(i));
 
@@ -55,11 +55,11 @@ public class main {
 						}
 					}
 				}
-				System.out.println(countDuplicates(ListaAux));
-				/*if(a > countDuplicates(ListaAux)) {
+				/*System.out.println(countDuplicates(ListaAux));
+				if(a > countDuplicates(ListaAux)) {
 					break;
-				}*/
-				a++;
+				}
+				a++;*/
 			}
 			System.out.println(ListaAux.toString());
 
