@@ -1,5 +1,4 @@
 package principal;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -9,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class main {
+	static int aux = 0;
+
 	public static void main(String[] args) throws IOException {
 		try {
 			FileReader arq = new FileReader("teste.txt");
@@ -20,11 +21,12 @@ public class main {
 			ArrayList<String> processoP = new ArrayList<String>();
 			ArrayList<String> processoR = new ArrayList<String>();
 			ArrayList<Integer> ListaAux = new ArrayList<Integer>();
+			ArrayList<Integer> ListaAux2 = new ArrayList<Integer>();
 			ArrayList<String> ListaLetra = new ArrayList<String>();
 
 			int nLinhas = Integer.parseInt(primeiraLinha[0]);
 			int nProcessos = Integer.parseInt(primeiraLinha[1]);
-
+	
 			for (int i = 0; i < nLinhas; i++) {
 				linha = lerArq.readLine();
 				processos = linha.split(";");
@@ -51,10 +53,8 @@ public class main {
 					break;
 				}
 			}
-			//ListaAux.remove(ListaAux.size()-1);
+
 			Collections.sort(ListaAux);
-			//ListaLetra.remove(ListaLetra.size()-1);
-			
 			System.out.println(ListaAux.toString());
 			System.out.println(ListaLetra.toString());
 
@@ -62,7 +62,8 @@ public class main {
 
 			FileWriter fw = new FileWriter( "saida.txt" );
 			BufferedWriter bw = new BufferedWriter( fw );
-			for(int i = 0 ; i < 3 ; i++) {
+			for(int i = 0; i < aux-1; i++) {
+			    ListaAux2.add(i);
 				bw.write((ListaAux.get(i)+2) + " " + ListaLetra.get(i) + " " );
 			}
 			bw.close();
@@ -76,6 +77,7 @@ public class main {
 	
 	public static Boolean countDuplicates(ArrayList<Integer> list, int e) {
 		int nRepete = 0;
+		aux++;
 			if (list.contains(e)) {
 				System.out.println(e);
 				nRepete++;
