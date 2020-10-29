@@ -53,8 +53,7 @@ public class main {
 						}
 					}
 				}
-				System.out.println(countDuplicates(ListaAux));
-				if (countDuplicates(ListaAux)) {
+				if (countDuplicates(ListaAux, i)) {
 					break;
 				}
 			}
@@ -67,11 +66,11 @@ public class main {
 
 	}
 
-	public static Boolean countDuplicates(ArrayList<Integer> list) {
+	public static Boolean countDuplicates(ArrayList<Integer> list, int e) {
 		int nRepete = 0;
 		// Traverse through the first list
 		for (int element : list) {
-			if (list.contains(element)) {
+			if (element == e) {
 				nRepete++;
 			}
 		}
