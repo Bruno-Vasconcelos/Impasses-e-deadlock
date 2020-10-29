@@ -22,7 +22,7 @@ public class main {
 			int nProcessos = Integer.parseInt(primeiraLinha[1]);
 
 			for (int i = 0; i < nLinhas; i++) {
-
+//deu certo
 				linha = lerArq.readLine();
 				processos = linha.split(";");
 				processoP.add(processos[0]); // possuido
