@@ -1,9 +1,12 @@
 package principal;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class main {
 	public static void main(String[] args) throws IOException {
@@ -17,6 +20,7 @@ public class main {
 			ArrayList<String> processoP = new ArrayList<String>();
 			ArrayList<String> processoR = new ArrayList<String>();
 			ArrayList<Integer> ListaAux = new ArrayList<Integer>();
+			ArrayList<String> ListaLetra = new ArrayList<String>();
 
 			int nLinhas = Integer.parseInt(primeiraLinha[0]);
 			int nProcessos = Integer.parseInt(primeiraLinha[1]);
@@ -29,52 +33,54 @@ public class main {
 			}
 
 			for (int i = 0; i < nLinhas; i++) {
-				System.out.println((i + 1) + " quer: " + processoR.get(i));
+				
+				System.out.println((i) + " quer: " + processoR.get(i));
 
 				for (int j = 0; j < nLinhas; j++) {
 					if (processoR.get(i).length() == 2) { // se não tem dois requisitos
 						if (processoR.get(i).trim().equals(processoP.get(j).trim())) {
-							System.out.println("   " + (j + 1) + " tem: " + processoP.get(j));
-							i = j - 1;
-							ListaAux.add(i+2);
+							System.out.println("   " + (j) + " tem: " + processoP.get(j));
+							ListaLetra.add(processoR.get(i).trim());
+							i = j-1;
+							ListaAux.add(i);
 							break;
-						}
-					} else { // se tem dois ou mais requisitos
-						int qtdR = processoR.get(i).length(), inicio = 0, fim = 2;
-						for (int z = 0; z < qtdR / 2; z++) {
-							System.out.println("   " + (j + 1) + " tem: " + processoP.get(j));
-							if (processoR.get(i).substring(inicio, fim).trim().equals(processoP.get(j).trim())) {
-								i = j - 1;
-								ListaAux.add(i+2);
-								break;
-							}
-							inicio += 2;
-							fim += 2;
 						}
 					}
 				}
-				if (countDuplicates(ListaAux, i)) {
+				if (countDuplicates(ListaAux, i+1)) {
 					break;
 				}
 			}
+			//ListaAux.remove(ListaAux.size()-1);
+			Collections.sort(ListaAux);
+			//ListaLetra.remove(ListaLetra.size()-1);
+			
 			System.out.println(ListaAux.toString());
+			System.out.println(ListaLetra.toString());
 
 			lerArq.close();
+
+			FileWriter fw = new FileWriter( "saida.txt" );
+			BufferedWriter bw = new BufferedWriter( fw );
+			for(int i = 0 ; i < 3 ; i++) {
+				bw.write((ListaAux.get(i)+2) + " " + ListaLetra.get(i) + " " );
+			}
+			bw.close();
+			fw.close();
+
+			
 		} catch (IOException e) {
 			System.err.printf("Não foi possível abrir o arquivo.\n" + e.getMessage());
 		}
-
 	}
-
+	
 	public static Boolean countDuplicates(ArrayList<Integer> list, int e) {
 		int nRepete = 0;
-		// Traverse through the first list
-		for (int element : list) {
-			if (element == e) {
+			if (list.contains(e)) {
+				System.out.println(e);
 				nRepete++;
 			}
-		}
-		if (nRepete > 2) {
+		if (nRepete == 1) {
 			return true;
 		} else
 			return false;
