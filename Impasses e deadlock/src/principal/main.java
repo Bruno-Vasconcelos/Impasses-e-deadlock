@@ -37,7 +37,7 @@ public class main {
 					if (processoR.get(i).length() == 2) { // se não tem dois requisitos
 						System.out.println("   "+(j + 1) + " tem: " + processoP.get(j));
 						if (processoR.get(i).trim().equals(processoP.get(j).trim())) {
-							i = j-1;
+							i = j;
 							ListaAux.add(i);
 							break;
 						}
@@ -46,7 +46,7 @@ public class main {
 						for (int z = 0; z < qtdR / 2; z++) {
 							System.out.println("   "+(j + 1) + " tem: " + processoP.get(j));
 							if (processoR.get(i).substring(inicio,fim).trim().equals(processoP.get(j).trim())) {
-								i = j-1;
+								i = j;
 								ListaAux.add(i);
 								break;
 							}
@@ -56,9 +56,9 @@ public class main {
 					}
 				}
 				System.out.println(countDuplicates(ListaAux));
-				if(a > countDuplicates(ListaAux)) {
+				/*if(a > countDuplicates(ListaAux)) {
 					break;
-				}
+				}*/
 				a++;
 			}
 			System.out.println(ListaAux.toString());
